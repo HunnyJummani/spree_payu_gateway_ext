@@ -28,6 +28,10 @@ module SpreePayuGateway
       #   copy_file 'production.yml', 'config/settings/production.yml', force: true
       #   copy_file 'test.yml', 'config/settings/test.yml', force: true
       # end
+
+      def copy_views
+        copy_file 'views/_payu_in.html.erb', 'app/views/spree/checkout/payment/_payu_in.html.erb'
+      end
     end
   end
 end
