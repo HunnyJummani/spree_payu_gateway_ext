@@ -1,4 +1,4 @@
-module Spree::Payment::ProcessingDecorator
+module SpreePayuGateway::Spree::Payment::ProcessingDecorator
 
   def process!
     if payment_method.is_a? Constants::PAYUIN_GATEWAY
@@ -29,4 +29,4 @@ module Spree::Payment::ProcessingDecorator
   end
 end
 
-Spree::Payment.prepend Spree::Payment::ProcessingDecorator
+Spree::Payment.prepend SpreePayuGateway::Spree::Payment::ProcessingDecorator
