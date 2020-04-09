@@ -20,7 +20,7 @@ module SpreePayuGateway
     end
 
     initializer "spree.payment.permit_params" do |app|
-      Spree::PermittedAttributes.source_attributes << :response_code
+      Spree::PermittedAttributes.payment_attributes << :response_code
     end
 
     config.to_prepare(&method(:activate).to_proc)
