@@ -13,12 +13,6 @@ module SpreePayuGateway
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
-      # Dir.glob(File.join(File.dirname(__FILE__), "../../app/controllers/*.rb")) do |c|
-      #   Rails.env.production? ? require(c) : load(c)
-      # end
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/models/spree/*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
-      end
     end
 
      initializer "spree.register.payment_methods" do |app|
