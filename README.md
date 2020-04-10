@@ -7,7 +7,7 @@ Introduction goes here.
 1. Add this extension to your Gemfile with this line:
 
     ```ruby
-    gem 'spree_payu_gateway', github: '[your-github-handle]/spree_payu_gateway'
+    gem 'spree_payu_gateway', github: 'HunnyJummani/spree_payu_gateway'
     ```
 
 2. Install the gem using Bundler
@@ -25,6 +25,9 @@ Introduction goes here.
 4. Restart your server
 
   If your server was running, restart it so that it can find the assets properly.
+
+## Note:
+    Gem uses `gem comfig` to handle the configurations for host URLs. If you are using different port then just make sure you make changes in the `settings/environment.yml` files.
 
 ## Testing
 
