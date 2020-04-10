@@ -1,6 +1,7 @@
 module SpreePayuGateway
   class Engine < Rails::Engine
     require 'spree/core'
+    require 'config'
     isolate_namespace Spree
     engine_name 'spree_payu_gateway'
 
