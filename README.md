@@ -39,7 +39,7 @@ SpreePayuGateway is a [Spree Commerce](http://spreecommerce.org/) extension that
 2. Go to Configurations > Payment Methods and visit New Payment Method
     Create a new Payment Method for PayUMoney with the merchant's key and salt available for your Payu merchant's account and enable the Autocapture flag.
 
-    Refer the image ![Payu Payment Method](https://drive.google.com/file/d/1p9RLM9Hu0Aosjpcd1zAK5rYA8SzOymf_/view?usp=sharing) for more detailed information.
+    Refer the image ![Payu Payment Method](https://drive.google.com/uc?export=view&id=1p9RLM9Hu0Aosjpcd1zAK5rYA8SzOymf_) for more detailed information.
 
 ## Note:
 
