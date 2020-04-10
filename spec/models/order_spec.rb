@@ -1,5 +1,4 @@
 require "spec_helper"
-require 'pry'
 
 describe Spree::Order, type: :model do
 
