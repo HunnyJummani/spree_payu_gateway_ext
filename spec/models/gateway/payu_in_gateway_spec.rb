@@ -1,7 +1,10 @@
 require "spec_helper"
 
 describe Spree::Gateway::PayuInGateway do
- let(:gateway) { create(:payu_payment_gateway) }
+  MIHID = '403993715520830822'.freeze
+  FAKE_MIHID = '430993715520830822'.freeze
+
+  let(:gateway) { create(:payu_payment_gateway) }
 
   context "#method_type" do
     it "returns method type" do
@@ -62,7 +65,7 @@ describe Spree::Gateway::PayuInGateway do
     it "credits the refund amount if authorized" do
       allow(gateway).to receive_message_chain(:provider, :refund).and_return(mock_success_response)
 
-      result = gateway.credit(1999, '403993715520830822')
+      result = gateway.credit(1999, MIHID)
 
       expect(result.success?).to be_truthy
       expect(result.success?).not_to be_falsey
@@ -72,7 +75,7 @@ describe Spree::Gateway::PayuInGateway do
     it "does not credit refund amount if not authorized" do
       allow(gateway).to receive_message_chain(:provider, :refund).and_return(mock_fail_response)
 
-      result = gateway.credit(1999, '430993715520830822')
+      result = gateway.credit(1999, FAKE_MIHID)
 
       expect(result.success?).to be_falsey
       expect(result.success?).not_to be_truthy
@@ -98,11 +101,11 @@ end
 def mock_success_response
   ActiveMerchant::Billing::Response.new(true, 'PayUIn Gateway: refund success', {},
                                             test: true,
-                                            authorization: '403993715520830822')
+                                            authorization: MIHID)
 end
 
 def mock_fail_response
   ActiveMerchant::Billing::Response.new(false, 'PayUIn Gateway: refund failed', {},
                                             test: true,
-                                            authorization: '430993715520830822')
+                                            authorization: FAKE_MIHID)
 end
