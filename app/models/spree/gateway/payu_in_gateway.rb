@@ -31,16 +31,14 @@ module Spree
       true
     end
 
-    # Purchase is already handled in payU webcheckout flow. So jut giving canned response
+    # Purchase is already handled in payU webcheckout flow. So just giving canned response
     def purchase(_money, _credit_card, _options = {})
       ActiveMerchant::Billing::Response.new(true, 'PayUIn Gateway: Forced success', {}, test: test?)
     end
 
     def credit(_money, authorization, _options = {})
-      response = provider_class.new(
-        { key: preferences[:merchant_key],
-          salt: preferences[:key_salt], test: test? }
-      ).refund(_money, authorization, _options)
+      response = provider.refund(_money, authorization, _options)
+
       if response.success?
         active_merchant_response(true, 'PayUIn Gateway: refund success', authorization: response.params['request_id'])
       else
@@ -63,6 +61,13 @@ module Spree
       ActiveMerchant::Billing::Response.new(success_fail, message, options,
                                             test: test,
                                             authorization: authorization)
+    end
+
+    def provider
+      provider_class.new(
+        { key: preferences[:merchant_key],
+          salt: preferences[:key_salt], test: test? }
+        )
     end
   end
 end

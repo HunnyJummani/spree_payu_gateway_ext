@@ -1,4 +1,5 @@
 # Run Coverage report
+require 'webmock/rspec'
 require 'simplecov'
 SimpleCov.start do
   add_filter 'spec/dummy'
@@ -69,6 +70,8 @@ RSpec.configure do |config|
   # to cleanup after each test instead.  Without transactional fixtures set to false the records created
   # to setup a test will be unavailable to the browser, which runs under a separate server instance.
   config.use_transactional_fixtures = false
+
+  WebMock.allow_net_connect!(net_http_connect_on_start: true)
 
   config.fail_fast = ENV['FAIL_FAST'] || false
   config.order = 'random'
