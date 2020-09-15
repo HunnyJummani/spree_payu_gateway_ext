@@ -1,12 +1,11 @@
 # frozen_string_literal: true
-
 module Spree
   class PayuHandlerController < Spree::StoreController
     skip_before_action :verify_authenticity_token
     before_action :check_response_authorized
 
     def success
-      if order.update_from_params(payu_parmas, permitted_checkout_attributes, request.headers.env)
+      if order.update_from_params(payu_params, permitted_checkout_attributes, request.headers.env)
         order.temporary_address = !params[:save_user_address]
         unless order.next
           flash[:error] = order.errors.full_messages.join("\n")
@@ -32,7 +31,7 @@ module Spree
 
     private
 
-    def payu_parmas
+    def payu_params
       ActionController::Parameters.new('_method' => 'patch', order: ActionController::Parameters.new(payments_attributes: [ActionController::Parameters.new(payment_method_id: payment_method.id, response_code: params[:mihpayid])]))
     end
 

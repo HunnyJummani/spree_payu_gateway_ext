@@ -22,15 +22,11 @@ module SpreePayuGateway
         end
       end
 
-      # def install_config_gem
-      #   run 'bundle exec rails g config:install'
-      #   copy_file 'development.yml', 'config/settings/development.yml', force: true
-      #   copy_file 'production.yml', 'config/settings/production.yml', force: true
-      #   copy_file 'test.yml', 'config/settings/test.yml', force: true
-      # end
-
-      def copy_views
-        copy_file 'views/_payu_in.html.erb', 'app/views/spree/checkout/payment/_payu_in.html.erb'
+      def install_config_gem
+        run 'bundle exec rails g config:install'
+        copy_file 'settings/development.yml', 'config/settings/development.yml', force: true
+        copy_file 'settings/production.yml', 'config/settings/production.yml', force: true
+        copy_file 'settings/test.yml', 'config/settings/test.yml', force: true
       end
     end
   end

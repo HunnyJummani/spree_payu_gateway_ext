@@ -1,6 +1,7 @@
 module SpreePayuGateway
   class Engine < Rails::Engine
     require 'spree/core'
+    require 'config'
     isolate_namespace Spree
     engine_name 'spree_payu_gateway'
 
@@ -13,12 +14,6 @@ module SpreePayuGateway
       Dir.glob(File.join(File.dirname(__FILE__), '../../app/**/*_decorator*.rb')) do |c|
         Rails.configuration.cache_classes ? require(c) : load(c)
       end
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/controllers/*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
-      end
-      Dir.glob(File.join(File.dirname(__FILE__), "../../app/models/*.rb")) do |c|
-        Rails.env.production? ? require(c) : load(c)
-      end
     end
 
      initializer "spree.register.payment_methods" do |app|
@@ -26,7 +21,7 @@ module SpreePayuGateway
     end
 
     initializer "spree.payment.permit_params" do |app|
-      Spree::PermittedAttributes.source_attributes << :response_code
+      Spree::PermittedAttributes.payment_attributes << :response_code
     end
 
     config.to_prepare(&method(:activate).to_proc)

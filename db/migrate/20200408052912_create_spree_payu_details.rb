@@ -12,8 +12,8 @@ class CreateSpreePayuDetails < SpreeExtension::Migration[6.0]
       t.string :issuing_bank
       t.string :card_type
       t.string :card_num
-      t.references :spree_payment, null: true
-      t.references :spree_order, null: false
+      t.references :payment, null: true
+      t.references :order, null: false
     end
   end
 end

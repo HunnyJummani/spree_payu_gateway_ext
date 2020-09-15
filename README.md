@@ -1,13 +1,19 @@
 # SpreePayuGateway
 
-Introduction goes here.
+SpreePayuGateway is a [Spree Commerce](http://spreecommerce.org/) extension that uses [PayUMoney](https://payu.in) payment gateway with multi-currency support including Indian currency.
+
+## Pre-Requisites
+
+1. Sign Up with [PayUMoney](https://payu.in)
+
+2. Get the available Merchant Key and Salt from merchant's dashboard.
 
 ## Installation
 
 1. Add this extension to your Gemfile with this line:
 
     ```ruby
-    gem 'spree_payu_gateway', github: '[your-github-handle]/spree_payu_gateway'
+    gem 'spree_payu_gateway', github: 'HunnyJummani/spree_payu_gateway'
     ```
 
 2. Install the gem using Bundler
@@ -25,6 +31,19 @@ Introduction goes here.
 4. Restart your server
 
   If your server was running, restart it so that it can find the assets properly.
+
+## Configurations in Spree Store.
+
+1. Login as admin
+
+2. Go to Configurations > Payment Methods and visit New Payment Method
+    Create a new Payment Method for PayUMoney with the merchant's key and salt available for your Payu merchant's account and enable the Autocapture flag.
+
+    Refer the image ![Payu Payment Method](https://drive.google.com/uc?export=view&id=1p9RLM9Hu0Aosjpcd1zAK5rYA8SzOymf_) for more detailed information.
+
+## Note:
+
+Gem uses `gem config` to handle the configurations for host URLs. If you are using different port then just make sure you make changes in the `settings/environment.yml` files.
 
 ## Testing
 
@@ -48,4 +67,4 @@ If you'd like to contribute, please take a look at the
 [instructions](CONTRIBUTING.md) for installing dependencies and crafting a good
 pull request.
 
-Copyright (c) 2020 [name of extension creator], released under the New BSD License
+Copyright (c) 2020 Hunny Jummani, released under the New BSD License

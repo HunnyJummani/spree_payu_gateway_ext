@@ -1,4 +1,4 @@
-module Spree
+module SpreePayuGateway::Spree
   module PaymentDecorator
     def self.prepended(base)
       base.class_eval do
@@ -8,4 +8,4 @@ module Spree
   end
 end
 
-Spree::Payment.prepend Spree::PaymentDecorator
+Spree::Payment.prepend SpreePayuGateway::Spree::PaymentDecorator
