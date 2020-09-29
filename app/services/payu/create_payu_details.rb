@@ -9,6 +9,7 @@ module Payu
     end
 
     def create
+      binding.pry
       # Create Payu details for payment and order to be placed.
       Spree::PayuDetail.create(payu_detail_params)
     end
@@ -21,6 +22,7 @@ module Payu
     end
 
     def payu_detail_params
+      binding.pry
       {
         mih_pay_id: params[:mihpayid],
         status: params[:status],

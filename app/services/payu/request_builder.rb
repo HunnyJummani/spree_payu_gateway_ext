@@ -18,7 +18,8 @@ module Payu
         phone: customer_phone_number,
         surl: "http://localhost:3000/spree/payu_handler/success",
         furl: "http://localhost:3000/spree/payu_handler/fail",
-        hash: payment_req_hash
+        hash: payment_req_hash,
+        service_provider: 'payu_paisa'
       }
     end
 

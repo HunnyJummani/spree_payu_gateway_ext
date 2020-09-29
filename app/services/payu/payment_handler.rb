@@ -10,11 +10,12 @@ module Payu
     end
 
     def send_payment
-      uri = URI.parse('https://test.payu.in/_payment')
+      uri = URI.parse('https://sandboxsecure.payu.in/_payment')
       # Create the HTTP objects
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
       request = Net::HTTP::Post.new(uri.request_uri, HEADER)
+      binding.pry
       request.body = URI.encode_www_form(request_payload)
       # Send the request
       http.request(request)

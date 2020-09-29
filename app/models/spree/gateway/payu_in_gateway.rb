@@ -4,6 +4,7 @@ module Spree
   class Gateway::PayuInGateway < Spree::Gateway
     preference :merchant_key, :string
     preference :key_salt, :string
+    preference :bolt_checkout, :boolean
     # preference :merchant_id, :string
     # preference :authorization_header, :string
 

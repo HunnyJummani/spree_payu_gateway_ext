@@ -16,7 +16,6 @@ module Spree
 
     def pay_with_payu
       response = Payu::PaymentHandler.new(payment_method: payment_method, order: @order).send_payment
-
       if response.code == '200'
         render html: response.body.html_safe
       else

@@ -8,6 +8,10 @@ module SpreePayuGateway
         @_config_source_root ||= File.expand_path("../", __FILE__)
       end
 
+      def add_javascripts
+        append_file 'vendor/assets/javascripts/spree/frontend/all.js', "//= require spree/frontend/spree_payu_bolt_checkout\n"
+      end
+
 
       def add_migrations
         run 'bundle exec rake railties:install:migrations FROM=spree_payu_gateway'
@@ -31,6 +35,7 @@ module SpreePayuGateway
 
       def copy_views
         copy_file 'views/_payu_in.html.erb', 'app/views/spree/checkout/payment/_payu_in.html.erb'
+        copy_file 'views/_admin_payu.html.erb', 'app/views/spree/admin/payments/source_views/_payu_in.html.erb'
       end
     end
   end
